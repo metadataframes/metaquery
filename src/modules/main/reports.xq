@@ -20,13 +20,12 @@ let $params :=
     <sql:parameter type="string">/repositories/</sql:parameter>              
     <sql:parameter type="string">/archival_objects/</sql:parameter>   
   </sql:parameters>
-let $conn := mqy-sql:connect($creds/conn/uri, $creds/conn/user, $creds/conn/pw)
 let $sql :=
   mqy-queries:aspace-notes(())
 return (
   <mqy-sql:results>{
     (mqy-sql:prepared(
-      $conn, 
+      $creds, 
       $params, 
       $sql
     ))
