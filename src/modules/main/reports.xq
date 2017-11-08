@@ -1,9 +1,7 @@
 import module namespace mqy-sql = "https://metadatafram.es/metaquery/sql/" 
-  at "/src/modules/mqy-sql.xqm";
+  at "../lib/sql/mqy-sql.xqm";
 import module namespace mqy-queries = "https://metadatafram.es/metaquery/queries/"
-  at "/src/modules/mqy-queries.xqm";
-import module namespace mqy = "https://metadatafram.es/metaquery/mqy/" 
-  at "/src/modules/mqy.xqm";
+  at "../lib/queries/mqy-queries.xqm";
 
 declare variable $mqy-sql:CONNECT := "";
 declare variable $mqy-sql:USER := "";
@@ -26,11 +24,11 @@ let $conn := mqy-sql:connect($creds/conn/uri, $creds/conn/user, $creds/conn/pw)
 let $sql :=
   mqy-queries:aspace-notes(())
 return (
-  <mqy:results>{
+  <mqy-sql:results>{
     (mqy-sql:prepared(
       $conn, 
       $params, 
       $sql
     ))
-  }</mqy:results> 
+  }</mqy-sql:results> 
 )
