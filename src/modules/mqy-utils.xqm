@@ -272,5 +272,9 @@ declare function mqy-utils:compile-query-string(
     )    
   )
   else
-    $queries[@index eq "title"]/*          
+    string-join(
+      (for $query in $queries[@index eq "title"]/*
+      return
+        $query), " AND "
+    )
 };
